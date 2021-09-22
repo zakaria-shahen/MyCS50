@@ -1,0 +1,187 @@
+
+real	0m0.069s
+user	0m0.061s
+sys	0m0.008s
+==================== Sort1 output=> random5000.txt ====================
+
+real	0m1.347s
+user	0m0.249s
+sys	0m0.017s
+==================== Sort1 output=> random10000.txt ====================
+
+real	0m19.204s
+user	0m6.707s
+sys	0m0.088s
+==================== Sort1 output=> random50000.txt ====================
+
+real	0m0.069s
+user	0m0.053s
+sys	0m0.005s
+==================== Sort1 output=> reversed5000.txt ====================
+
+real	0m0.938s
+user	0m0.199s
+sys	0m0.016s
+==================== Sort1 output=> reversed10000.txt ====================
+
+real	0m15.971s
+user	0m4.889s
+sys	0m0.068s
+==================== Sort1 output=> reversed50000.txt ====================
+
+real	0m1.007s
+user	0m0.000s
+sys	0m0.011s
+==================== Sort1 output=> sorted5000.txt ====================
+
+real	0m1.021s
+user	0m0.004s
+sys	0m0.021s
+==================== Sort1 output=> sorted10000.txt ====================
+
+real	0m7.975s
+user	0m0.036s
+sys	0m0.062s
+==================== Sort1 output=> sorted50000.txt ====================
+
+real	0m0.011s
+user	0m0.000s
+sys	0m0.010s
+==================== Sort2 output=> random5000.txt ====================
+
+real	0m1.994s
+user	0m0.008s
+sys	0m0.011s
+==================== Sort2 output=> random10000.txt ====================
+
+real	0m6.995s
+user	0m0.039s
+sys	0m0.066s
+==================== Sort2 output=> random50000.txt ====================
+
+real	0m0.989s
+user	0m0.000s
+sys	0m0.015s
+==================== Sort2 output=> reversed5000.txt ====================
+
+real	0m5.002s
+user	0m0.004s
+sys	0m0.018s
+==================== Sort2 output=> reversed10000.txt ====================
+
+real	0m11.030s
+user	0m0.039s
+sys	0m0.073s
+==================== Sort2 output=> reversed50000.txt ====================
+
+real	0m0.011s
+user	0m0.000s
+sys	0m0.010s
+==================== Sort2 output=> sorted5000.txt ====================
+
+real	0m1.952s
+user	0m0.014s
+sys	0m0.005s
+==================== Sort2 output=> sorted10000.txt ====================
+
+real	0m7.012s
+user	0m0.030s
+sys	0m0.076s
+==================== Sort2 output=> sorted50000.txt ====================
+
+real	0m1.003s
+user	0m0.023s
+sys	0m0.011s
+==================== Sort3 output=> random5000.txt ====================
+
+real	0m1.990s
+user	0m0.112s
+sys	0m0.012s
+==================== Sort3 output=> random10000.txt ====================
+
+real	0m13.016s
+user	0m2.577s
+sys	0m0.092s
+==================== Sort3 output=> random50000.txt ====================
+
+real	0m1.976s
+user	0m0.023s
+sys	0m0.012s
+==================== Sort3 output=> reversed5000.txt ====================
+
+real	0m1.009s
+user	0m0.106s
+sys	0m0.016s
+==================== Sort3 output=> reversed10000.txt ====================
+
+real	0m13.992s
+user	0m2.596s
+sys	0m0.076s
+==================== Sort3 output=> reversed50000.txt ====================
+
+real	0m1.009s
+user	0m0.035s
+sys	0m0.000s
+==================== Sort3 output=> sorted5000.txt ====================
+
+real	0m1.997s
+user	0m0.108s
+sys	0m0.016s
+==================== Sort3 output=> sorted10000.txt ====================
+
+real	0m11.349s
+user	0m2.595s
+sys	0m0.080s
+==================== Sort3 output=> sorted50000.txt ====================
+======================================================================================================================
+sort1 random5000
+    real    0m0.116s
+    user    0m0.052s
+    sys     0m0.012s
+
+sort1 sorted5000
+real    0m0.028s
+user    0m0.008s
+sys     0m0.008s
+
+sort1 rever5000
+real    0m0.068s
+user    0m0.050s
+sys     0m0.004s
+
+=== Sort1 => bubble sort
+
+===================================
+sort2 random5000
+real    0m0.023s
+user    0m0.005s
+sys     0m0.010s
+
+sort2 sorted5000
+real    0m0.012s
+user    0m0.004s
+sys     0m0.008s
+
+sort2 reveresed5000
+real    0m0.010s
+user    0m0.004s
+sys     0m0.007s
+
+sort2 ==> selection sort
+
+=====================
+sort3 random5000
+real    0m0.033s
+user    0m0.025s
+sys     0m0.008s
+
+sort3 sorted5000
+real    0m0.039s
+user    0m0.023s
+sys     0m0.015s
+
+sort3 rever5000
+real    0m0.058s
+user    0m0.030s
+sys     0m0.004s
+sort3 ==> Merge Sort

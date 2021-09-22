@@ -1,0 +1,50 @@
+
+
+
+
+/* All page */
+body
+{
+    padding: 0  !important;;
+}
+
+
+aside {
+    width: 20%  !important;;
+    
+}
+
+article {
+    width: 80%  !important;;
+}
+
+header{
+    padding: 5em;
+
+}
+
+.list-group-item-dark.list-group-item-action:focus,
+ .list-group-item-dark.list-group-item-action:hover{
+    color: #ffffff;
+    background-color: #3c867fad;
+}
+
+/*  Home Page */
+
+
+/* 404 page  */
+
+
+
+/*  contact us */
+form{
+    width: 60%;
+    
+}
+.form-control{
+    margin-bottom: 1em !important;
+}
+
+/* about */
+
+

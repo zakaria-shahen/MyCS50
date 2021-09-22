@@ -1,0 +1,11 @@
+sort1 uses: Bubble sort
+
+How do you know?: Arranged numbers take less time than unordered numbers Ω(n)
+
+sort2 uses: Merge sort
+
+How do you know?: Because it takes less time than sort3 to reach the result θ(n log n)
+
+sort3 uses: Selection sort
+
+How do you know?: It takes more time than sort2 to reach the result Ω(n^2)
