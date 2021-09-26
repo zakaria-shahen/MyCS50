@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    history
+{% endblock %}
+
+{% block main %}
+    <h3>History</h3>
+    <table class="table table-hover table-striped">
+        <thead class="text-capitalize table-secondary">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Datetime</th>
+                <th scope="col">type</th>
+                <th scope="col">symbol</th>
+                <th scope="col">shares</th>
+                <th scope="col">price</th>
+            </tr> 
+        </thead>
+        <tbody>
+            {% for row in data %}
+            <tr>
+                <!-- {# (1, '2021-09-25 14:17:37', 'Buy', 'NFLX', 5, 592.39) #}
+                {# <th scope="row">{{ row[0] }}</th>
+                {% for element in row %}
+                    {% if element == row[0] %}{% else %}
+                        <td>{{ element }}</td>
+                    {% endif %}
+                {% endfor %} #} -->
+
+                {% for element in row %}
+                    <td>{{ element }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
