@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    location
+{% endblock %}
+
+
+{% block main %}
+    {% with view_title="location Table", link_edit="/edit_location", link_view="/location", table="location"  %}
+      {% include "functionals/data_view.html" %}
+    {% endwith %}
+
+    {% with modal_id="add", modal_title__butConfirm="Add", link="/add_location", link_view="/location", modal_body='
+        <form action="javascript">          
+          <div class="form-group">
+              <input autocomplete="off" autofocus class="form-control" name="name" placeholder="location Name" type="text" required>
+          </div>      
+        </form>
+        '|safe %}
+      {% include "functionals/modal.html" %}
+    {% endwith %}
+
+    {% with modal_id="edit", modal_title__butConfirm="Edit", link="/edit_location", link_view="/location", modal_body='
+        <form action="javascript"> 
+            <div class="form-group">
+                <input class="form-control" name="id" placeholder="ID" type="text" disabled required>
+            </div>
+                     
+            <div class="form-group">
+                <input autocomplete="off" autofocus class="form-control" name="name" placeholder="location Name" type="text" required>
+            </div>
+        </form>
+    '|safe %}
+      {% include "functionals/modal.html" %}
+    {% endwith %}
+
+    {% with modal_id="delete", modal_title__butConfirm="Delete", link="/delete_data", link_view="/location", modal_body="this is tag form Delete"%}
+      {% include "functionals/modal.html" %}
+    {% endwith %}
+
+{% endblock %}

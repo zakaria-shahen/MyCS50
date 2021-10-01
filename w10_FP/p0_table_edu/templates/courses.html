@@ -1,0 +1,125 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Courses
+{% endblock %}
+
+
+{% block main %}
+    {% with view_title="courses Table", link_edit="/edit_course", link_view="/courses", table="courses"  %}
+      {% include "functionals/data_view.html" %}
+    {% endwith %}
+
+    {% with modal_id="add", modal_title__butConfirm="Add", link="/add_course", link_view="/courses", modal_body='
+        <form action="javascript">          
+          <div class="form-group">
+              <input autocomplete="off" autofocus class="form-control" name="name" placeholder="Course Name" type="text" required>
+          </div>
+      
+          <div class="form-group">
+              <input autocomplete="off" autofocus class="form-control" name="course_code" placeholder="Course Code" type="text" required>
+          </div>
+      
+          <div class="form-group">
+              <select  autocomplete="off" name="term" required class="form-select form-control">
+                  <option vaule="none" disabled selected>Select Term</option> 
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+              </select>
+          </div>
+      
+          <div class="form-group">
+              <select  autocomplete="off" name="level" required class="form-select form-control" >
+                  <option vaule="none" disabled selected>Select Level</option> 
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+              </select>
+          </div>
+      
+          <div class="form-group">
+              <select  autocomplete="off" name="type" required class="form-select form-control" >
+                  <option vaule="none" disabled selected>Select Group Type</option> 
+                  <option value="1">Arabic</option>
+                  <option value="2">English</option>
+                  <option value="3">BIS</option>
+                  <option value="4">FMI</option>
+            </select>
+          </div>
+            
+          <div class="form-group">
+            <select  autocomplete="off" name="department" required class="form-select form-control" >
+                <option vaule="none" disabled selected>Select department</option> 
+                <option value="1">General</option>
+                <option value="2">IS</option>
+                <option value="3">MB</option>
+                <option value="4">Acc</option>
+            </select>
+          </div>
+        </form>
+        '|safe %}
+      {% include "functionals/modal.html" %}
+    {% endwith %}
+
+    {% with modal_id="edit", modal_title__butConfirm="Edit", link="/edit_course", link_view="/courses", modal_body='
+        <form action="javascript"> 
+            <div class="form-group">
+                <input class="form-control" name="id" placeholder="ID" type="text" disabled required>
+            </div>
+          
+            <div class="form-group">
+                <input autocomplete="off" autofocus class="form-control" name="name" placeholder="Course Name" type="text" required>
+            </div>
+        
+            <div class="form-group">
+                <input autocomplete="off" autofocus class="form-control" name="course_code" placeholder="Course Code" type="text" required>
+            </div>
+        
+            <div class="form-group">
+                <select  autocomplete="off" name="term" required class="form-select form-control">
+                    <option vaule="none" disabled selected>Select Term</option> 
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                </select>
+            </div>
+        
+            <div class="form-group">
+                <select  autocomplete="off" name="level" required class="form-select form-control" >
+                    <option vaule="none" disabled selected>Select Level</option> 
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                </select>
+            </div>
+        
+            <div class="form-group">
+                <select  autocomplete="off" name="type" required class="form-select form-control" >
+                    <option vaule="none" disabled selected>Select Group Type</option> 
+                    <option value="1">Arabic</option>
+                    <option value="2">English</option>
+                    <option value="3">BIS</option>
+                    <option value="4">FMI</option>
+              </select>
+            </div>
+              
+            <div class="form-group">
+              <select  autocomplete="off" name="department" required class="form-select form-control" >
+                  <option vaule="none" disabled selected>Select department</option> 
+                  <option value="1">General</option>
+                  <option value="2">IS</option>
+                  <option value="3">MB</option>
+                  <option value="4">Acc</option>
+              </select>
+            </div>
+        </form>
+    '|safe %}
+      {% include "functionals/modal.html" %}
+    {% endwith %}
+
+    {% with modal_id="delete", modal_title__butConfirm="Delete", link="/delete_data", link_view="/courses", modal_body="this is tag form Delete"%}
+      {% include "functionals/modal.html" %}
+    {% endwith %}
+
+{% endblock %}

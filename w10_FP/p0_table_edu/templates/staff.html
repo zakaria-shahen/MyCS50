@@ -1,0 +1,108 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Staff
+{% endblock %}
+
+
+{% block main %}
+    {% with view_title="Staff Table", link_edit="/edit_staff", link_view="/staff", table="staff"  %}
+      {% include "functionals/data_view.html" %}
+    {% endwith %}
+
+    {% with modal_id="add", modal_title__butConfirm="Add", link="/add_staff", link_view="/staff", modal_body='
+        <form action="javascript">          
+          <div class="form-group">
+              <input autocomplete="off" autofocus class="form-control" name="name" placeholder="name" type="text" required>
+          </div>
+      
+          <div class="form-group">
+              <input autocomplete="off" autofocus class="form-control" name="short_name" placeholder="short name" type="text" required>
+          </div>
+      
+          <div class="form-group">
+              <select  autocomplete="off" name="degree" required class="form-select form-control">
+                  <option vaule="none" disabled selected>Select Degree</option> 
+                      <option value="1">Teaching Assistant</option>
+                      <option value="2">Assistant Lecturer</option>
+                      <option value="3">Lecturer / Assistan</option>
+                      <option value="4">Associate Professor</option>
+                      <option value="5">Professor</option>
+                      <option value="6">Professor Emeritus</option>
+              </select>
+          </div>
+      
+          <div class="form-group">
+              <select  autocomplete="off" name="department" required class="form-select form-control" >
+                  <option vaule="none" disabled selected>Select Degree</option> 
+                      <option value="1">General</option>
+                      <option value="2">IS</option>
+                      <option value="3">MB</option>
+                      <option value="4">Acc</option>
+              </select>
+          </div>
+      
+          <div class="form-group">
+              <select  autocomplete="off" name="college" required class="form-select form-control" >
+                  <option vaule="none" disabled selected>Select Degree</option> 
+                      <option value="1">FCBA</option>
+              </select>
+          </div>
+          
+        </form>
+        '|safe %}
+      {% include "functionals/modal.html" %}
+    {% endwith %}
+
+    {% with modal_id="edit", modal_title__butConfirm="Edit", link="/edit_staff", link_view="/staff", modal_body='
+        <form action="javascript">
+          <div class="form-group">
+              <input class="form-control" name="id" placeholder="ID" type="text" disabled required>
+          </div>
+          
+          <div class="form-group">
+              <input autocomplete="off" autofocus class="form-control" name="name" placeholder="name" type="text" required>
+          </div>
+      
+          <div class="form-group">
+              <input autocomplete="off" autofocus class="form-control" name="short_name" placeholder="short name" type="text" required>
+          </div>
+      
+          <div class="form-group">
+              <select  autocomplete="off" name="degree" required class="form-select form-control">
+                  <option vaule="none" disabled selected>Select Degree</option> 
+                      <option value="1">Teaching Assistant</option>
+                      <option value="2">Assistant Lecturer</option>
+                      <option value="3">Lecturer / Assistan</option>
+                      <option value="4">Associate Professor</option>
+                      <option value="5">Professor</option>
+                      <option value="6">Professor Emeritus</option>
+              </select>
+          </div>
+      
+          <div class="form-group">
+              <select  autocomplete="off" name="department" required class="form-select form-control" >
+                  <option vaule="none" disabled selected>Select Degree</option> 
+                      <option value="1">General</option>
+                      <option value="2">IS</option>
+                      <option value="3">MB</option>
+                      <option value="4">Acc</option>
+              </select>
+          </div>
+      
+          <div class="form-group">
+              <select  autocomplete="off" name="college" required class="form-select form-control" >
+                  <option vaule="none" disabled selected>Select Degree</option> 
+                      <option value="1">FCBA</option>
+              </select>
+          </div>
+        </form>
+    '|safe %}
+      {% include "functionals/modal.html" %}
+    {% endwith %}
+
+    {% with modal_id="delete", modal_title__butConfirm="Delete", link="/delete_data", link_view="/staff", modal_body="this is tag form Delete"%}
+      {% include "functionals/modal.html" %}
+    {% endwith %}
+
+{% endblock %}

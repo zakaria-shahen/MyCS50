@@ -1,0 +1,41 @@
+{# data_view: view_title, link_edit, link_view, table  #}
+{% block view %}
+<!--  data_view -->
+<div class="" style="width: 15em;" id="view">
+    <div class="row">
+        <h3 class="col-8">{{ view_title }}</h3>
+        <!-- Add button  -->
+        <button  type="button" class="col btn btn-primary" data-bs-toggle="modal" data-bs-target="#add">
+          Add
+        </button>
+    </div>    
+
+    <table class="table table-hover table-striped">
+        <thead class="text-capitalize table-secondary">
+            <tr>
+                {% for key in keys %}
+                    <th scope="col">{{ key }}</th>
+                {% endfor %}
+                <th scope="col"></th>
+
+            </tr> 
+        </thead>
+        <tbody>
+            {% for row in data %}
+                <tr>
+                    {% for element in row %}
+                        <td>{{ element }}</td>
+                    {% endfor %}
+                    <td>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md">
+                            <button class="btn btn-success mr-3" onclick="show_delete_edit(2, '{{ row[0] }}','{{ link_edit }}', '{{ link_view }}', '{{ table }}')" >Edit</button>
+                                                                     <!-- show_delete_edit(status, id, link, link_view, name=null, table=null) -->
+                            <button class="btn btn-danger" onclick="show_delete_edit(1, '{{ row[0] }}', '/delete_data', '{{ link_view }}', '{{ table }}', '{{ row[1] }}')" >Delete</button>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
