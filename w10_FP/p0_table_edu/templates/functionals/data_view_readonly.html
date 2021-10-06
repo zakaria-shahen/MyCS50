@@ -1,0 +1,30 @@
+{# data_view: view_title, link_edit, link_view, table  #}
+{% block view %}
+<!--  data_view -->
+<div class="text-center" id="view">
+    <div class="text-capitalize" >
+        <h3>{{ view_title }}</h3>
+    </div>
+
+    <table class="table table-hover table-striped table-dark border rounded border-info align-middle">
+        <thead class="text-capitalize table-secondary ">
+            <tr>
+                {% for key in keys %}
+                    <th scope="col">{{ key }}</th>
+                {% endfor %}
+                <th scope="col"></th>
+
+            </tr> 
+        </thead>
+        <tbody>
+            {% for row in data %}
+                <tr>
+                    {% for element in row %}
+                        <td>{{ element }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -5,37 +5,23 @@ create table staff_degree(
     primary key (id)
 );
 
-/* insert into staff_degree values(1, "Teaching Assistant");
+insert into staff_degree values(1, "Teaching Assistant");
 insert into staff_degree values(2, "Assistant Lecturer");
 insert into staff_degree values(3, "Lecturer / Assistant Professor");
 insert into staff_degree values(4, "Associate Professor");
 insert into staff_degree values(5, "Professor");
-insert into staff_degree values(6, "Professor Emeritus"); */
-
-
-insert into staff_degree values(1, "معيد");
-insert into staff_degree values(2, "مدرس مساعد");
-insert into staff_degree values(3, "مدرس");
-insert into staff_degree values(4, "استاذ مساعد");
-insert into staff_degree values(5, "استاذ");
-insert into staff_degree values(6, "استاذ متفرغ");
-
-
+insert into staff_degree values(6, "Professor Emeritus");
 
 create table departments(
     id integer,
     name text unique not null,
-    primary key(id)
+    primary key(name)
 );
 
-insert into departments values(1, "العام");
-insert into departments values(2, "محاسبة");
-insert into departments values(3, "ادارة اعمال");
-insert into departments values(4, "نظم معلومات");
-insert into departments values(5, "علوم السياسية");
-insert into departments values(6, "تجاره خارجية");
-insert into departments values(7, "اقتصاد");
-insert into departments values(9, "BIS & FMI");
+insert into departments values(1, "General");
+insert into departments values(2, "IS");
+insert into departments values(3, "MB");
+insert into departments values(4, "Acc");
 
 create table colleges(
     id integer,
@@ -120,6 +106,11 @@ insert into day_week values(6, "Friday");
 insert into day_week values(7, "Saturday");
 
 
+create table courses_open(
+    id integer not null,
+    primary key (id),
+    foreign key (id) references courses(id)
+);
 
 create table courses_time(
     id integer,
@@ -127,19 +118,19 @@ create table courses_time(
     week_ integer not null,  
     start_time_lecture varchar(15) not null,
     end_time_lecture varchar(15),
-    courses_modal integer not null,
+    courses_open integer not null,
     primary key(id),
     foreign key (location_) references location(id), 
     foreign key (week_) references day_week(id), 
-    foreign key (courses_modal) references courses(id)
+    foreign key (courses_open) references courses_open(id)
 );
 
 
-create table courses_time__staff(
-    courses_time integer not null,
+create table courses_open__staff(
+    courses_open integer not null,
     staff integer not null,
-    primary key(courses_time, staff),
-    foreign key(courses_time) references courses_time(id),
+    primary key(courses_open, staff),
+    foreign key(courses_open) references courses_time(id),
     foreign key(staff) references staff(id)
 );
 

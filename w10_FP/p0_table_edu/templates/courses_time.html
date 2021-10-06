@@ -1,3 +1,4 @@
+{# data (data_view), locations, staffs, groups #}
 {% extends "layout.html" %}
 
 {% block title %}
@@ -10,119 +11,171 @@
       {% include "functionals/data_view.html" %}
     {% endwith %}
 
-    {% with modal_id="add", modal_title__butConfirm="Add", link="/add_courses_time", link_view="/courses_time", modal_body='
-        <form action="javascript">          
-            <!-- courses_open(id_course, location_, week_, start_time_lecture, end_time_lecture) -->
-          <div class="form-group">
-              <input autocomplete="off" autofocus class="form-control" name="id_course" placeholder="id_course" type="number" required>
-          </div>
-        
-          <div class="form-group">
-              <select  autocomplete="off" name="location_" required class="form-select form-control" >
-                  <option vaule="none" disabled selected>Select location</option> 
-                    {# loop  #}
-                      <option value="1">location_1</option>
-                      <option value="2">location_2</option>
-                      <option value="3">location_3</option>
+    {% with modal_id="add", modal_title__butConfirm="Add", link="/add_courses_time", link_view="/courses_time"%}
+      <div class="modal fade" id="{{ modal_id }}" tabindex="-1"  aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content bg-dark border border-info ">
+            <div class="modal-header">
+              <h5 class="modal-title" >{{ modal_title__butConfirm }}</h5>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Body Content -->
+                <form action="javascript">          
+                
+                <div class="form-group">
+                  <select  autocomplete="off" name="courses_modal" required class="form-select form-control" >
+                      <option vaule="none" disabled selected>courses_modal</option>
+                        {% for course in courses %}
+                            <option value="{{ course[0] }}">{{ course[0] }}- {{ course[1] }}</option>
+                        {% endfor %}
+                  </select>
+                </div>
 
-              </select>
-          </div>
+                <div class="form-group">
+                    <select  autocomplete="off" name="location_" required class="form-select form-control" >
+                        <option vaule="none" disabled selected>Select location</option> 
+                          {% for location in locations %}
+                              <option value="{{ location[0] }}">{{ location[0] }}- {{ location[1] }}</option>
+                          {% endfor %}
+                    </select>
+                </div>
+            
+                <div class="form-group">
+                    <select  autocomplete="off" name="week_" required class="form-select form-control" >
+                        <option vaule="none" disabled selected>Select week</option> 
+                        <option value="1">Sunday</option>
+                        <option value="2">Monday</option>
+                        <option value="3">Tuesday</option>
+                        <option value="4">Wednesday</option>
+                        <option value="5">Thursday</option>
+                        <option value="6">Friday</option>
+                        <option value="7">Saturday</option>
+                  </select>
+                </div>
+                
+                <div class="form-group">
+                  <input autocomplete="off" autofocus class="form-control" name="start_time_lecture" placeholder="id_course" type="time" required>
+                </div>
       
-          <div class="form-group">
-              <select  autocomplete="off" name="week_" required class="form-select form-control" >
-                  <option vaule="none" disabled selected>Select week</option> 
-                  <option value="1">Sunday</option>
-                  <option value="2">Monday</option>
-                  <option value="3">Tuesday</option>
-                  <option value="4">Wednesday</option>
-                  <option value="5">Thursday</option>
-                  <option value="6">Friday</option>
-                  <option value="7">Saturday</option>
-            </select>
+                <div class="form-group">
+                  <input autocomplete="off" autofocus class="form-control" name="end_time_lecture" placeholder="id_course" type="time" required>
+                </div>
+      
+                
+                <div class="form-group">
+                  <select  autocomplete="off" name="staff" required multiple class="form-select form-control" >
+                      <option vaule="none" disabled selected>Select staff</option> 
+                      {% for staff in staffs %}
+                          <option value="{{ staff[0] }}">{{ staff[0] }}- {{ staff[1] }}</option>
+                      {% endfor %}
+                  </select>
+                </div>
+      
+                <div class="form-group">
+                  <select  autocomplete="off" name="group_" required multiple class="form-select form-control" >
+                      <option vaule="none" disabled selected>Select Group</option>
+                      {% for group in groups %}
+                          <option value="{{ group[0] }}">{{ group[0] }}- {{ group[1] }}</option>
+                      {% endfor %}
+                  </select>
+                </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-danger confirm" onclick="add_edit_delete('{{ link }}', '{{ link_view }}', 'add')">{{ modal_title__butConfirm }}</button>
+            </div>
           </div>
-          
-          <div class="form-group">
-            <input autocomplete="off" autofocus class="form-control" name="start_time_lecture" placeholder="id_course" type="time" required>
-          </div>
-
-          <div class="form-group">
-            <input autocomplete="off" autofocus class="form-control" name="end_time_lecture" placeholder="id_course" type="time" required>
-          </div>
-
-          
-          <div class="form-group">
-            <select  autocomplete="off" name="staff" required multiple class="form-select form-control" >
-                <option vaule="none" disabled selected>Select week</option> 
-                <option value="1">staff_1</option>
-                <option value="2">staff_2</option>
-                <option value="3">staff_3</option>
-                <option value="4">staff_4</option>
-                <option value="5">staff_5</option>
-                <option value="6">staff_6</option>
-                <option value="7">staff_7</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <select  autocomplete="off" name="group_" required multiple class="form-select form-control" >
-                <option vaule="none" disabled selected>Select week</option> 
-                <option value="1">group_1</option>
-                <option value="2">group_2</option>
-                <option value="3">group_3</option>
-                <option value="4">group_4</option>
-                <option value="5">group_5</option>
-                <option value="6">group_6</option>
-                <option value="7">group_7</option>
-            </select>
-          </div>
-        </form>
-        '|safe %}
-      {% include "functionals/modal.html" %}
+        </div>
+    </div>
     {% endwith %}
 
-    {% with modal_id="edit", modal_title__butConfirm="Edit", link="/edit_courses_time", link_view="/courses_time", modal_body='
-        <form action="javascript"> 
-            <div class="form-group">
-                <input class="form-control" name="id" placeholder="ID" type="text" disabled required>
+
+    {# modal idnex: modal_id, modal_title__butConfirm, modal_body, link, link_view #}
+
+
+
+    {% with modal_id="edit", modal_title__butConfirm="Edit", link="/edit_courses_time", link_view="/courses_time" %}
+      <div class="modal fade" id="{{ modal_id }}" tabindex="-1"  aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content bg-dark border border-info ">
+            <div class="modal-header">
+              <h5 class="modal-title" >{{ modal_title__butConfirm }}</h5>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-                     
-            <div class="form-group">
-                <input autocomplete="off" autofocus class="form-control" name="name" placeholder="Group Name" type="text" required>
+            <div class="modal-body">
+                  <!-- Body Content -->
+                  <form action="javascript">          
+                    <div class="form-group">
+                        <input class="form-control" name="id" placeholder="ID" type="text" disabled required>
+                    </div>
+                    <div class="form-group">
+                      <select  autocomplete="off" name="courses_modal" required class="form-select form-control" >
+                          <option vaule="none" disabled selected>courses_modal</option> 
+                            {% for course in courses %}
+                                <option value="{{ course[0] }}">{{ course[0] }}- {{ course[1] }}</option>
+                            {% endfor %}
+                      </select>
+                    </div>
+
+                    <div class="form-group">
+                        <select  autocomplete="off" name="location_" required class="form-select form-control" >
+                            <option vaule="none" disabled selected>Select location</option> 
+                              {% for location in locations %}
+                                  <option value="{{ location[0] }}">{{ location[0] }}- {{ location[1] }}</option>
+                              {% endfor %}
+                        </select>
+                    </div>
+                
+                    <div class="form-group">
+                        <select  autocomplete="off" name="week_" required class="form-select form-control" >
+                            <option vaule="none" disabled selected>Select week</option> 
+                            <option value="1">Sunday</option>
+                            <option value="2">Monday</option>
+                            <option value="3">Tuesday</option>
+                            <option value="4">Wednesday</option>
+                            <option value="5">Thursday</option>
+                            <option value="6">Friday</option>
+                            <option value="7">Saturday</option>
+                      </select>
+                    </div>
+                    
+                    <div class="form-group">
+                      <input autocomplete="off" autofocus class="form-control" name="start_time_lecture" placeholder="id_course" type="time" required>
+                    </div>
+          
+                    <div class="form-group">
+                      <input autocomplete="off" autofocus class="form-control" name="end_time_lecture" placeholder="id_course" type="time" required>
+                    </div>
+          
+                    
+                    <div class="form-group">
+                      <select  autocomplete="off" name="staff" required multiple class="form-select form-control" >
+                          <option vaule="none" disabled selected>Select staff</option> 
+                          {% for staff in staffs %}
+                              <option value="{{ staff[0] }}">{{ staff[0] }}- {{ staff[1] }}</option>
+                          {% endfor %}
+                      </select>
+                    </div>
+          
+                    <div class="form-group">
+                      <select  autocomplete="off" name="group_" required multiple class="form-select form-control" >
+                          <option vaule="none" disabled selected>Select Group</option>
+                          {% for group in groups %}
+                              <option value="{{ group[0] }}">{{ group[0] }}- {{ group[1] }}</option>
+                          {% endfor %}
+                      </select>
+                    </div>
+                  </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger confirm" onclick="add_edit_delete('{{ link }}', '{{ link_view }}', 'add')">{{ modal_title__butConfirm }}</button>
+              </div>
             </div>
-        
-            <div class="form-group">
-                <select  autocomplete="off" name="level" required class="form-select form-control" >
-                    <option vaule="none" disabled selected>Select Level</option> 
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                </select>
-            </div>
-        
-            <div class="form-group">
-                <select  autocomplete="off" name="type" required class="form-select form-control" >
-                    <option vaule="none" disabled selected>Select Group Type</option> 
-                    <option value="1">Arabic</option>
-                    <option value="2">English</option>
-                    <option value="3">BIS</option>
-                    <option value="4">FMI</option>
-              </select>
-            </div>
-            
-            <div class="form-group">
-              <select  autocomplete="off" name="department" required class="form-select form-control" >
-                  <option vaule="none" disabled selected>Select department</option> 
-                  <option value="1">General</option>
-                  <option value="2">IS</option>
-                  <option value="3">MB</option>
-                  <option value="4">Acc</option>
-              </select>
-            </div>
-          </form>
-        </form>
-    '|safe %}
-      {% include "functionals/modal.html" %}
+          </div>
+      </div>
     {% endwith %}
 
     {% with modal_id="delete", modal_title__butConfirm="Delete", link="/delete_data", link_view="/courses_time", modal_body="this is tag form Delete"%}

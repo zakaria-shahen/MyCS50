@@ -27,7 +27,6 @@ async function add_edit_delete(link, link_view, main_id, id=null, table=null){
                 data[p[0]] = p[1]
             }
         }
-        console.log(data)
     }
 
     await fetch(link, {
@@ -49,14 +48,14 @@ async function add_edit_delete(link, link_view, main_id, id=null, table=null){
 }
 
 // API: refresh view any table show
-async function refresh_view(link_view){
+async function refresh_view(link_view, data=null){
     const view = document.querySelector("#view")
     await fetch(link_view, {
         method: "POST",
         headers: {
             "Content-Type": "application/json;charset=utf-8"
         },
-        body: ""
+        body: data
     }).then( (res) => res.text())
     .then((res) => {
         view.innerHTML = res
@@ -110,10 +109,22 @@ function show_delete_edit(status, id, link, link_view, table, name=null){
             for (let i = 0; i != selects.length; i++){
                 const options = selects[i].querySelectorAll('option')   
                 // Remove selected
-                options[selects[i].selectedIndex].removeAttribute('selected')
+                options.forEach((element) => element.selected = false)
 
                 // Add selected
-                options[data[selects[i].name]].setAttribute('selected', '')
+                data_selects = data[selects[i].name]
+                
+                // if multiple selected (if is Array)
+                if (Array.isArray(data_selects)){
+                    data_selects.forEach(element => {
+                        selects[i].querySelector(`option[value="${element}"]`).selected = true
+                    })
+                
+                    continue
+                } 
+
+                // if single selected
+                options[data_selects].selected = true
             }
             
             // Load 'fragment' to DOM form tag 
@@ -159,11 +170,11 @@ function modal_hidden_show(main_id, type){
 }
 
 // alter 
-function alert(message, type="primary"){
+function alert(message, type="info"){
     const div = document.querySelector("#alert_div")
 
     const fragment = document.createElement("div")
-    fragment.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + message + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
+    fragment.innerHTML = '<div class="alert text-capitalize alert-' + type + ' alert-dismissible" role="alert">' + message + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
 
     div.append(fragment)
 }
@@ -192,3 +203,13 @@ async function search(link_qeruy, by=1){
     
 }
 
+window.onload = () => {
+    const schedules = document.querySelector("#schedules_select")
+    if (schedules !== null) {
+        schedules.addEventListener("change", (e) => {
+            const id_group = parseInt(e.target.value)
+            refresh_view("/schedules", id_group)
+        })
+    }
+
+}

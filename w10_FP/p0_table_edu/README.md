@@ -29,13 +29,13 @@
 		# Add + View + Edit + remove => GUI 
 			- [X] staff
 			- [X] groups
-			- schedules
+			- [X] schedules 6-10-2021
 			- [X] courses
 			- [X] location
 
 		# view table
-			- select group
-			- view gtoup
+			- [X] select group 6-10-2021
+			- [X] view gtoup  6-10-2021
 
 		# ADD + Edit + remove => SQL (Admin)
 			- [X] departments

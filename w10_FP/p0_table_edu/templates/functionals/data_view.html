@@ -1,17 +1,22 @@
 {# data_view: view_title, link_edit, link_view, table  #}
 {% block view %}
 <!--  data_view -->
-<div class="" style="width: 15em;" id="view">
-    <div class="row">
-        <h3 class="col-8">{{ view_title }}</h3>
-        <!-- Add button  -->
-        <button  type="button" class="col btn btn-primary" data-bs-toggle="modal" data-bs-target="#add">
-          Add
-        </button>
-    </div>    
+<div class="text-center" id="view">
+    <div class="text-capitalize" >
+        <h3>{{ view_title }}</h3>
+    </div>
 
-    <table class="table table-hover table-striped">
-        <thead class="text-capitalize table-secondary">
+
+    <!-- Add button  -->
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start ms-3">
+        <button  type="button" class="btn btn-info mb-2" data-bs-toggle="modal" data-bs-target="#add">
+            Add
+        </button>
+    </div>
+
+
+    <table class="table table-hover table-striped table-dark border rounded border-info align-middle">
+        <thead class="text-capitalize table-secondary ">
             <tr>
                 {% for key in keys %}
                     <th scope="col">{{ key }}</th>
@@ -27,7 +32,7 @@
                         <td>{{ element }}</td>
                     {% endfor %}
                     <td>
-                        <div class="d-grid gap-2 d-md-flex justify-content-md">
+                        <div class="d-grid gap-2 d-md-flex justify-content-md justify-content-md-end pe-3">
                             <button class="btn btn-success mr-3" onclick="show_delete_edit(2, '{{ row[0] }}','{{ link_edit }}', '{{ link_view }}', '{{ table }}')" >Edit</button>
                                                                      <!-- show_delete_edit(status, id, link, link_view, name=null, table=null) -->
                             <button class="btn btn-danger" onclick="show_delete_edit(1, '{{ row[0] }}', '/delete_data', '{{ link_view }}', '{{ table }}', '{{ row[1] }}')" >Delete</button>

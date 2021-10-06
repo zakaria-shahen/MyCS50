@@ -85,31 +85,7 @@ update groups set name = ?, level = ?, type = ?, department = ? where id = ?
 
 
 
-
--- View courses_open
-SELECT courses_open.id as "ID",
-        courses.id as "ID course",
-        courses.name as "Course Name",
-        location.name as "location",
-        day_week.name as "Day",
-        courses_open.start_time_lecture as "Time Start",
-        courses_open.end_time_lecture as "Time End"
-    from courses_open 
-join courses on courses.id = courses_open.id_course
-join location  on location.id = courses_open.location_
-join day_week on day_week.id = courses_open.week_;
-
--- Insert courses_open
-insert into courses_open(id_course, location_, week_, start_time_lecture, end_time_lecture)
-                values(?, ?, ?, ?, ?)
-
--- Edit courses_open
-update courses_open set id_course = ?, location_ = ?, week_ = ?, start_time_lecture = ?, end_time_lecture = ? 
-        where id  = ? 
-
-
-
--- View courses_time
+-- View Courses_time (realaion:(1-1) location courses - (M:M) groups and staff)
 SELECT courses_time.id as "ID Time",
         courses.id as "ID course",
         courses.name as "Course Name",
@@ -117,39 +93,58 @@ SELECT courses_time.id as "ID Time",
         day_week.name as "Day",
         courses_time.start_time_lecture as "Time Start",
         courses_time.end_time_lecture as "Time End",
-        courses_open__staff.staff,
-        courses_time__groups.group_
-        -- staff.name,
-        -- groups.name
-    from courses_time 
-join courses_open on courses_open.id = courses_time.courses_open
-join courses on courses.id = courses_time.courses_open
+        replace(group_concat(distinct(groups.name)), ",", ", ") as "Groups",
+        replace(group_concat(distinct(staff.name)), ",", ", ") as "Staff"
+        from courses_time 
+left join courses on courses.id = courses_time.courses_modal
+left join location on location.id = courses_time.location_
+left join day_week on day_week.id = courses_time.week_
+left join courses_time__staff on courses_time__staff.courses_time = courses_time.id
+left join courses_time__groups on courses_time__groups.courses_time = courses_time.id
+left join staff on staff.id = courses_time__staff.staff
+left join groups on groups.id = courses_time__groups.group_
+GROUP by courses_time.id;
+
+-- Add Courses_time (3 Query)
+insert into courses_time(courses_modal, location_, week_, start_time_lecture, end_time_lecture) values(?, ?, ?, ?, ?);
+insert into courses_time__staff(courses_time, staff) values(?, ?);
+insert into courses_time__groups(courses_time, group_) values(?, ?);
+
+-- Edit Courses_time (5 Query)
+update courses_time set courses_modal = ?, location_ = ?, week_ = ?, start_time_lecture = ?, end_time_lecture = ?  where id = ?;
+delete from courses_time__staff where courses_time = ?", (id_courses_time, );
+insert into courses_time__staff(courses_time, staff) values(?, ?);
+delete from courses_time__groups where courses_time = ?", (id_courses_time, );
+insert into courses_time__groups(courses_time, group_) values(?, ?);
+
+
+-- Delete Courses_time (3 Query)
+delete from courses_time__groups  where courses_time;
+delete from courses_time__staff where courses_time;
+delete from courses_time where id = ?;
+
+
+
+
+
+
+-- View schedules (View)
+select id, name from groups;
+
+select  courses_time.id as "ID Time",
+        courses.name as "courses name",
+        location.name as "location",
+        day_week.name as "Day",
+        courses_time.start_time_lecture as "Start Time",
+        courses_time.end_time_lecture as "End Time",
+        replace(group_concat(DISTINCT staff.name), ",", ", ") as "Staff"
+from courses_time
+join courses on courses.id = courses_time.courses_modal
 join location on location.id = courses_time.location_
 join day_week on day_week.id = courses_time.week_
-join courses_open__staff on courses_open__staff.courses_open = courses_time.courses_open
-join courses_time__groups on courses_time__groups.courses_time = courses_time.courses_open;
--- join staff on staff.id = courses_open__staff.staff
--- join groups on groups.id = courses_time__staff.group_;
-
--- Insert courses_time
-insert into courses_time(courses_open, location_, week_, start_time_lecture, end_time_lecture)
-                values(6, 2, 1, "03:00 AM", "04:00 AM");
-select * from courses_open;
-
--- -- Edit courses_time
-update courses_time set courses_open = ?, location_ = ?, week_ = ?, start_time_lecture = ?, end_time_lecture = ? 
-        where id  = ? 
-
-
-
--- Insret courses_open__staff
-insert into courses_open__staff(courses_open, staff)  values(3, 4);
-
--- Insert courses_time__groups
-insert into courses_time__groups(courses_time, group_)  values(3, 2);
-
--- Edit courses_open__staff
-update courses_open__staff set courses_open = ?, staff = ? where courses_open = ? and staff = ?;
-
--- Edit courses_time__groups
-update courses_time__groups set courses_time = ?, group_id = ? where courses_time = ? and group_ = ?;
+join courses_time__staff on courses_time__staff.courses_time = courses_time.id
+join staff on staff.id = courses_time__staff.staff
+join courses_time__groups on courses_time__groups.courses_time = courses_time.id
+join groups on groups.id = courses_time__groups.group_
+WHERE groups.id = ?
+group by courses_time.id;

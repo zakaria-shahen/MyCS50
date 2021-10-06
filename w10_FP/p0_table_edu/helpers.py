@@ -12,6 +12,7 @@ def sql(query, values=(), return_data=False):
         data = None
         with sqlite3.connect(db_name) as db:
             cur = db.cursor()
+            cur.execute("pragma foreign_keys = on")
             cur.execute(query, values)
             keys = [d[0] for d in cur.description]
             data = [keys, cur.fetchall()]
