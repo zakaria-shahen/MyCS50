@@ -1,48 +1,74 @@
-# Next Task:
-	- coures_open 
-    - schedules
-    - convert html to png
+<!-- ## Python OR JS Convert html to png  -->
+# Schedules
+Site for preparing the lecture schedule for study groups
 
-# Task Done
-	## 30-9-2021
-		-  
+**In Front End, a percentage of the reliance was made on the Distribution code [finance - Distribution](https://cs50.harvard.edu/x/2021/psets/9/finance/)**
 
-	## 29-09-2021
-		- Groups page
-		- validations()
-		- add_edit_data()
-	
+![Demo](Demo.png)
 
 
-# Table edu 
-	## Tools
-		SQL + Flask + js
-	
-	## [X] SQL => sqlite3 
-		server info tables
-		Dr table => id name type department
-		Courses => id name department term
-		Groups => id name course_id dr_nama trem 
-		loaction => id name 
-		
-	## flask
-		# Add + View + Edit + remove => GUI 
-			- [X] staff
-			- [X] groups
-			- [X] schedules 6-10-2021
-			- [X] courses
-			- [X] location
 
-		# view table
-			- [X] select group 6-10-2021
-			- [X] view gtoup  6-10-2021
+## Run
+```sh
+	export FLASK_APP=application.py 
+	flask run
+```
 
-		# ADD + Edit + remove => SQL (Admin)
-			- [X] departments
-			- [X] group_type
-			- [X] collleges
-			- [X] day_week
-			- [X] staff degree
+## Using 
+1. Enter Data to Location
+1. Enter Data to Courses
+1. Enter Data to Staffs
+1. Enter Data to Groups
+1. Enter Data to Time
+1. View the result by page Schedules
 
 
-	## Python OR JS Convert html to png 
+## Requirements
+- pyhton3
+- flask
+- sqlite3
+
+
+
+## Schema
+![schema](schema.png)
+
+
+## Tree Project 
+```sh
+.
+├── Demo.png
+├── README.md
+├── application.py
+├── helpers.py
+├── query.sql
+├── requirements.txt
+├── schema.png
+├── schema.sql
+├── static
+│   ├── app.js
+│   ├── favicon.ico
+│   └── style.css
+├── table_edu.db
+└── templates
+    ├── courses.html
+    ├── courses_time.html
+    ├── functionals
+    │   ├── data_view.html
+    │   ├── data_view_readonly.html
+    │   └── modal.html
+    ├── groups.html
+    ├── layout.html
+    ├── location.html
+    ├── schedules.html
+    └── staff.html
+```
+
+
+
+## Tools
+- Pyhton
+- SQLite3
+- Java Script 
+- Bootstrap
+- dbdiagram.io
