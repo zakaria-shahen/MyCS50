@@ -124,7 +124,7 @@ function show_delete_edit(status, id, link, link_view, table, name=null){
                 } 
 
                 // if single selected
-                options[data_selects].selected = true
+                selects[i].querySelector(`option[value="${data_selects}"]`).selected = true
             }
             
             // Load 'fragment' to DOM form tag 

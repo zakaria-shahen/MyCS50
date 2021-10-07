@@ -1,6 +1,8 @@
-<!-- ## Python OR JS Convert html to png  -->
 # Schedules
 Site for preparing the lecture schedule for study groups
+
+**Video:** [Watch](https://youtu.be/QBxL2N5m2go)
+
 
 **In Front End, a percentage of the reliance was made on the Distribution code [finance - Distribution](https://cs50.harvard.edu/x/2021/psets/9/finance/)**
 
@@ -22,6 +24,7 @@ Site for preparing the lecture schedule for study groups
 1. Enter Data to Time
 1. View the result by page Schedules
 
+<!-- ## Python OR JS Convert html to png...soon  -->
 
 ## Requirements
 - pyhton3
