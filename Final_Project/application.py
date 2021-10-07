@@ -284,7 +284,7 @@ def courses_time():
     else:
 
 
-        return render_template('functionals/data_view.html', key=data[0], data=data[1],
+        return render_template('functionals/data_view.html', keys=data[0], data=data[1],
                 view_title="courses_time Table", link_edit="/edit_courses_time", link_view="/courses_time", table="courses_time")
 
 @app.route("/add_courses_time", methods=["POST"])
